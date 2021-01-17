@@ -1,0 +1,27 @@
+version: "3"
+networks:
+  app_net:
+    driver: bridge
+    ipam:
+     driver: default
+     config:
+       - subnet: 172.30.0.0/24
+
+services:
+  db:
+    build: ./postgresql/
+    container_name: "docker-postgresql-work"
+    volumes:
+      - ./postgresql/init:/docker-entrypoint-initdb.d # 初期データ投入
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pgadmin
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+      TZ: "Asia/Tokyo"
+    hostname: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    networks:
+      app_net:
+        ipv4_address: 172.30.0.100
