@@ -18,11 +18,12 @@ Docker + PostgreSQL の環境構築を試したものです。 今後知見が�
 
 ```bash
 ./
+├── LICENSE
 ├── README.md
 ├── docker-compose.yml
-└── postgresql
+└── postgresql/
     ├── Dockerfile
-    └── init
+    └── init/
         └── initialize.sql
 ```
 
